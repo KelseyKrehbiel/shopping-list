@@ -31,31 +31,29 @@ function addItem(itemName){
             </div>
           </li>`);
     }
-    function checkItem(){
-    //apply strikethrough to item
+
+//delete item from list
+$("body").on('click', ".shopping-item-delete",function(){
+    //find parent "li" then delete it
+    $(this).parents("li").remove();
+});
     
-    }
+//Add item to list
+$("#js-shopping-list-form").submit(function(event){
+    //when Add item is clicked get the field value and pass to addItem
+    event.preventDefault();
+    //console.log(event)
+    let itemName = $(this).find("#shopping-list-entry")[0].value;    
+    //clear the input
+    $(this).find("#shopping-list-entry").val('');
+
+    //console.log(itemName);
+    addItem(itemName);
+});
     
-    function deleteItem(){
-    //delete item from list
-    
-    }
-    
-    $("#js-shopping-list-form").submit(function(event){
-      //when Add item is clicked get the field value and pass to addItem
-      event.preventDefault();
-      //console.log(event)
-    
-      let itemName = $(this).find("#shopping-list-entry")[0].value;
-      console.log(itemName);
-      addItem(itemName);
-    });
-    
-    $("body").on('click', ".shopping-item-toggle",function(){
-        //console.log($(this));
-        //find parent "li" then find child shopping-item. Then toggle the class
-        $(this).parents("li").find(".shopping-item").toggleClass("shopping-item__checked");
-        //console.log(itemText);
- 
-      });
-        
+$("body").on('click', ".shopping-item-toggle",function(){
+    //console.log($(this));
+    //find parent "li" then find child shopping-item. Then toggle the class
+    $(this).parents("li").find(".shopping-item").toggleClass("shopping-item__checked");
+    //console.log(itemText);
+});
