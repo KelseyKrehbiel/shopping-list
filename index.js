@@ -51,9 +51,11 @@ function addItem(itemName){
       addItem(itemName);
     });
     
-    $('.shopping-item-toggle').click(function(){
-      console.log(this);
-      $(this).toggleClass('.shopping-item__checked');
-      console.log("check");
-    });
+    $("body").on('click', ".shopping-item-toggle",function(){
+        //console.log($(this));
+        //find parent "li" then find child shopping-item. Then toggle the class
+        $(this).parents("li").find(".shopping-item").toggleClass("shopping-item__checked");
+        //console.log(itemText);
+ 
+      });
         
